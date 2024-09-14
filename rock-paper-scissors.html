@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let choices = ['rock', 'paper', 'scissors'];
+        let humanScore = 0;
+        let computerScore = 0;
+
+        function getComputerChoice() {
+            const randomNumber = Math.floor(Math.random() * 3);
+            return choices[randomNumber];
+        }
+
+        function getHumanChoice() {
+            let sign = prompt("Rock, Paper, Scissors!");
+            return sign.toLowerCase();
+        }
+
+        function playRound(humanChoice, computerChoice) {
+            if (humanChoice === computerChoice) {
+                return "It's a tie!";
+            } else if (
+                (humanChoice === "rock" && computerChoice === "scissors") ||
+                (humanChoice === "paper" && computerChoice === "rock") ||
+                (humanChoice === "scissors" && computerChoice === "paper")
+            ) {
+                humanScore++;
+                return "You win! " + humanChoice + " beats " + computerChoice + "!";
+            } else {
+                computerScore++;
+                return "You lose! " + computerChoice + " beats " + humanChoice + "!";
+            }
+        }
+
+        function playGame() {
+            for (let i = 0; i < 5; i++) {
+                const humanSelection = getHumanChoice();
+                const computerSelection = getComputerChoice();
+                console.log(playRound(humanSelection, computerSelection));
+                console.log("Human Score: " + humanScore + " | Computer Score: " + computerScore);
+            }
+
+            if (humanScore > computerScore) {
+                console.log("You won the game!");
+            } else if (computerScore > humanScore) {
+                console.log("You lost the game!");
+            } else {
+                console.log("The game is a tie!");
+            }
+        }
+
+        playGame(); // Call the function to start the game
+    </script>
+</body>
+</html>
